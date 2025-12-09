@@ -19,13 +19,13 @@ binary_tree_t *binary_tree_node(binary_tree_t *parent, int value)
 	tempNode->n = value;
 	tempNode->left = NULL;
 	tempNode->right = NULL;
-	if (root == NULL)
+	if (parent == NULL)
 	{
-		root = tempNode;
+		parent = tempNode;
 	}
 	else
 	{
-		current = root;
+		current = parent;
 		parent = NULL;
 		while (1)
 		{
