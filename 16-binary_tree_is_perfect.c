@@ -3,6 +3,37 @@
 #include "binary_trees.h"
 
 /**
+* power - computes the power.
+* @base: base
+* @exp: exponent
+* Return: The result.
+*/
+
+size_t power(size_t base, size_t exp)
+{
+	size_t i, result = 1;
+
+	for (i = 0; i < exp; i++)
+		result *= base;
+	return (result);
+}
+
+/**
+* binary_tree_preorder_sum_nodes - goes through the binary tree in preorder
+* @tree: pointer to the node of the tree.
+* @sum: sum of the the leaves encountered.
+*/
+
+void binary_tree_preorder_sum_nodes(const binary_tree_t *tree, size_t *sum)
+{
+	if (!tree)
+		return;
+	*sum += 1;
+	binary_tree_preorder_sum_nodes(tree->left, sum);
+	binary_tree_preorder_sum_nodes(tree->right, sum);
+}
+
+/**
 * binary_tree_height - calculates the height of a tree
 * @tree: pointer to the root node of the tree.
 * Return: size_t type. The height of the tree.
@@ -21,27 +52,6 @@ size_t binary_tree_height(const binary_tree_t *tree)
 }
 
 
-
-/**
-* binary_tree_balance - checks wether a binary tree is balanced.
-* @tree: pointer to the root node of the tree.
-* Return: int type. Returns the balance factor of a tree.
-*/
-
-int binary_tree_balance(const binary_tree_t *tree)
-{
-	int height_left, height_right;
-
-	if (!tree)
-		return (0);
-	height_left = binary_tree_height(tree->left);
-	height_right = binary_tree_height(tree->right);
-	return (height_left - height_right);
-}
-
-
-
-
 /**
 * binary_tree_is_perfect - checks wether a binary tree is balanced.
 * @tree: pointer to the root node of the tree.
@@ -50,12 +60,16 @@ int binary_tree_balance(const binary_tree_t *tree)
 
 int binary_tree_is_perfect(const binary_tree_t *tree)
 {
-	int p;
+	size_t d;
+	size_t sum = 0;
+	size_t *sum_ptr = &sum;
 
 	if (!tree)
 		return (0);
-	p = binary_tree_balance(tree);
-	if (p)
+	d = binary_tree_height(tree);
+	binary_tree_preorder_sum_nodes(tree, sum_ptr);
+	printf("%li %li", sum, d);
+	if ((power(2, d) - 1) != sum)
 		return (0);
 	return (1);
 }
