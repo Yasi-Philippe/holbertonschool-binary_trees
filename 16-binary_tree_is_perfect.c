@@ -71,7 +71,7 @@ int binary_tree_is_perfect(const binary_tree_t *tree)
 	d = binary_tree_height(tree);
 	binary_tree_preorder_sum_nodes(tree, sum_ptr);
 	printf("%li %li", sum, d);
-	if ((power(2, d) - 1) != sum)
+	if ((power(2, d + 1) - 1) != sum)
 		return (0);
 	return (1);
 }
