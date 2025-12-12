@@ -45,5 +45,6 @@ size_t binary_tree_leaves(const binary_tree_t *tree);
 void binary_tree_print(const binary_tree_t *tree);
 int binary_tree_balance(const binary_tree_t *tree);
 int binary_tree_is_perfect(const binary_tree_t *tree);
+binary_tree_t *binary_tree_uncle(binary_tree_t *node)
 
 #endif /* BINARY_TREES_H */
