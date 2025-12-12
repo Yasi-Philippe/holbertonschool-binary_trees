@@ -9,9 +9,10 @@
  * Return: A pointer to the oncle node.
  */
 
- binary_tree_t *binary_tree_uncle(binary_tree_t *node)
+binary_tree_t *binary_tree_uncle(binary_tree_t *node)
 {
 	binary_tree_t *parent, *grand_parent;
+
 	if (!node)
 		return (0);
 	if (!node->parent)
